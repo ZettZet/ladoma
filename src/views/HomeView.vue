@@ -1,18 +1,30 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="card-container">
+    <product-card v-for="product in productStore.products"
+                  :product="product"
+                  @add="onAdd"
+    />
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+<script lang="ts" setup>
+import {useProductStore} from "@/store/productStore";
+import ProductCard from "@/components/ProductCard.vue"
+import {useCartStore} from "@/store/cartStore";
 
-export default defineComponent({
-  name: 'HomeView',
-  components: {
-    HelloWorld,
-  },
-});
+const productStore = useProductStore()
+const {addProduct} = useCartStore()
+
+const onAdd = (id: number) => {
+  addProduct(id)
+}
+
 </script>
+
+<style lang="sass" scoped>
+.card-container
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: space-around
+</style>
