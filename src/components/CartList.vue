@@ -1,22 +1,37 @@
 <template>
-  <div v-for="cartEntry in cart">
-    <div>{{ cartEntry.product.name }}</div>
-    <input type="number" v-model="cartEntry.count" min="0"/>
-    <div>{{ cartEntry.product.price }}₽</div>
-    <button v-if="cartEntry.count===0" @click="removeProduct(cartEntry.product.id)">Удалить товар из корзины?</button>
+  <div class="cart">
+    <cart-header/>
+    <div class="cart__container">
+      <cart-item v-for="cartEntry in cart" :cartEntry="cartEntry"/>
+      <cart-checkout/>
+    </div>
   </div>
-  <strong>{{ getTotalPrice }}₽</strong>
+
 </template>
 
 <script lang="ts" setup>
 import {useCartStore} from "@/store/cartStore"
 import {storeToRefs} from "pinia";
+import CartHeader from "./CartHeader.vue"
+import CartCheckout from "./CartCheckout.vue"
+import CartItem from "@/components/CartItem.vue";
 
 const cartStore = useCartStore()
-const {getTotalPrice, cart} = storeToRefs(cartStore)
+const {cart} = storeToRefs(cartStore)
 const {removeProduct} = cartStore
 
 </script>
 
 <style lang="sass" scoped>
+.cart
+  display: flex
+  flex-direction: column
+  align-items: flex-end
+  width: 100%
+
+.cart__container
+  width: 80%
+  margin: 0 auto
+
+
 </style>
