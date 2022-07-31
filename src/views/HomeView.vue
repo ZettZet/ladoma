@@ -13,6 +13,7 @@ import ProductCard from "@/components/ProductCard.vue"
 import {useCartStore} from "@/store/cartStore";
 
 const productStore = useProductStore()
+productStore.fetchProducts()
 const {addProduct} = useCartStore()
 
 const onAdd = (id: number) => {
