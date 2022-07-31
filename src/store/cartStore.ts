@@ -33,9 +33,9 @@ const useCartStore = defineStore('cartStore', () => {
         }
         cart.value[index].count = count
     }
-    const addProduct = (productId: number) => {
+    const addProduct = async (productId: number) => {
         const index = getProductIndexInCartById(productId)
-        const product = getProductById(productId)
+        const product = await getProductById(productId)
         if (index === -1) {
             cart.value.push({product, count: 1})
         }
