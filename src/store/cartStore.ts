@@ -53,7 +53,11 @@ const useCartStore = defineStore('cartStore', () => {
         cart.value.reduce((accumulatedPrice, {count, product: {price}}) => accumulatedPrice + (price * count), 0)
     )
 
-    return {cart, getTotalPrice, setProductCount, decreaseProductCount, increaseProductCount, removeProduct, addProduct}
+    const clear = () => {
+        cart.value = []
+    }
+
+    return {cart, getTotalPrice, setProductCount, decreaseProductCount, increaseProductCount, removeProduct, addProduct, clear}
 })
 
 export {useCartStore}
