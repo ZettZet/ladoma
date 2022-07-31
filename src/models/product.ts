@@ -1,9 +1,10 @@
 export type Product = {
     id: number;
-    imageSource: string;
-    name: string;
+    image: string;
+    title: string;
     description: string;
     price: number;
+    category: string;
 }
 
 export type CartEntry = {
