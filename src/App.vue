@@ -1,10 +1,10 @@
 <template>
-  <router-link to="/">LADOMA</router-link>
-  <router-link to="/cart">cart</router-link>
+  <nav-bar/>
   <router-view/>
 </template>
 
 <script lang="ts" setup>
+import NavBar from "@/components/NavBar.vue";
 </script>
 
 <style lang="sass">
@@ -15,4 +15,7 @@
 
 html
   font-family: sans-serif
+
+body
+  background-color: white
 </style>
